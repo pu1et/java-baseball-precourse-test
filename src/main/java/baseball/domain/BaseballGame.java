@@ -17,22 +17,35 @@ public class BaseballGame {
     }
 
     private void setGameResult() {
-        setStrike();
+        setStrikeAndBall();
     }
 
     public int getStrike() {
         return strike;
     }
 
-    private void setStrike() {
+    public int getBall() {
+        return ball;
+    }
+
+    private void setStrikeAndBall() {
         for (int i = 0; i < NUM_LEN; i++) {
             int strikeResult = isStrikeIdx(i);
             strike += strikeResult;
+            ball += isBallIdx(strikeResult, i);
         }
     }
 
     private int isStrikeIdx(int idx) {
         if (targetNumber.charAt(idx) == userNumber.charAt(idx)) {
+            return 1;
+        }
+        return 0;
+    }
+
+    private int isBallIdx(int strikeResult, int idx) {
+        if (strikeResult == 1) return 0;
+        if (targetNumber.contains(String.valueOf(userNumber.charAt(idx)))) {
             return 1;
         }
         return 0;
