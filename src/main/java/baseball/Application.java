@@ -4,6 +4,7 @@ import baseball.domain.BaseballGame;
 import baseball.domain.TargetGenerator;
 import baseball.domain.UserInputValidator;
 import baseball.view.InputView;
+import baseball.view.OutputView;
 
 public class Application {
 
@@ -17,6 +18,12 @@ public class Application {
         String userNumber = setUserNumber();
 
         BaseballGame baseBallGame = new BaseballGame(userNumber, targetNumber);
+        printGameResult(baseBallGame);
+        if (!baseBallGame.getIsWinning()) {
+            startNewGame();
+            return;
+        }
+        OutputView.printWinning();
     }
 
     static String setTargetNumber() {
@@ -34,5 +41,13 @@ public class Application {
             userInputValidator = new UserInputValidator(userInput);
         }
         return userInput;
+    }
+
+    private static void printGameResult(BaseballGame baseballGame) {
+        if (baseballGame.getIsNothing()) {
+            OutputView.printNothing();
+            return;
+        }
+        OutputView.printStringAndBall(baseballGame.getStrike(), baseballGame.getBall());
     }
 }
