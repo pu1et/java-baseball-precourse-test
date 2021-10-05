@@ -1,7 +1,10 @@
 package baseball.domain;
 
+import java.util.regex.Pattern;
+
 public class UserInputValidator {
     private static final int NUM_LEN =3;
+
     private final String userInput;
     private final boolean isValid;
 
@@ -18,10 +21,17 @@ public class UserInputValidator {
         if (!isValidLength()) {
             return false;
         }
+        if (!isValidNumber()) {
+            return false;
+        }
         return true;
     }
 
     private boolean isValidLength() {
         return userInput.length() == NUM_LEN;
+    }
+
+    private boolean isValidNumber() {
+        return Pattern.matches("^[1-9]*$", userInput);
     }
 }
