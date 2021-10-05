@@ -17,11 +17,19 @@ public class BaseballGame {
     }
 
     private void setGameResult() {
+        initializeGame();
         setStrikeAndBall();
         setIsNothing();
         setIsWinning();
     }
 
+    private void initializeGame() {
+        strike = 0;
+        ball = 0;
+        isNothing = false;
+        isWinning = false;
+    }
+    
     public int getStrike() {
         return strike;
     }
