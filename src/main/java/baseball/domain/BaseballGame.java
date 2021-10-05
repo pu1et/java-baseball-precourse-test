@@ -18,6 +18,7 @@ public class BaseballGame {
 
     private void setGameResult() {
         setStrikeAndBall();
+        setIsNothing();
     }
 
     public int getStrike() {
@@ -26,6 +27,10 @@ public class BaseballGame {
 
     public int getBall() {
         return ball;
+    }
+
+    public boolean getIsNothing() {
+        return isNothing;
     }
 
     private void setStrikeAndBall() {
@@ -49,5 +54,11 @@ public class BaseballGame {
             return 1;
         }
         return 0;
+    }
+
+    private void setIsNothing() {
+        if (strike == 0 && ball == 0){
+            isNothing = true;
+        }
     }
 }
