@@ -10,17 +10,19 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO 숫자 야구 게임 구현
-        startNewGame();
+        do {
+            String targetNumber = setTargetNumber();
+            startNewGame(targetNumber);
+        } while (isNewGame());
     }
 
-    private static void startNewGame() {
-        String targetNumber = setTargetNumber();
+    private static void startNewGame(String targetNumber) {
         String userNumber = setUserNumber();
+        BaseballGame baseballGame = new BaseballGame(userNumber, targetNumber);
 
-        BaseballGame baseBallGame = new BaseballGame(userNumber, targetNumber);
-        printGameResult(baseBallGame);
-        if (!baseBallGame.getIsWinning()) {
-            startNewGame();
+        printGameResult(baseballGame);
+        if (!baseballGame.getIsWinning()) {
+            startNewGame(targetNumber);
             return;
         }
         OutputView.printWinning();
@@ -49,5 +51,18 @@ public class Application {
             return;
         }
         OutputView.printStringAndBall(baseballGame.getStrike(), baseballGame.getBall());
+    }
+
+    private static boolean isNewGame() {
+        final int NEW_GAME = 1;
+        final int QUIT = 2;
+
+        int userInput = InputView.getNewGameOrQuitGameInput();
+
+        while (userInput != NEW_GAME && userInput != QUIT) {
+            InputView.printInputErrorMsg();
+            userInput = InputView.getNewGameOrQuitGameInput();
+        }
+        return userInput == NEW_GAME;
     }
 }
