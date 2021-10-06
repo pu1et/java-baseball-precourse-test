@@ -33,4 +33,13 @@ class BaseballGameTest {
         assertThat(baseballGame.getStrike()).isEqualTo(0);
         assertThat(baseballGame.getIsNothing()).isEqualTo(true);
     }
+
+    @Test
+    @DisplayName("스트라이크의 개수가 3일 때 승리로 판정되어야 한다.")
+    void 승리_판정() {
+        BaseballGame baseballGame = new BaseballGame("123", "123");
+
+        assertThat(baseballGame.getStrike()).isEqualTo(3);
+        assertThat(baseballGame.getIsWinning()).isEqualTo(true);
+    }
 }
