@@ -23,4 +23,14 @@ class BaseballGameTest {
         assertThat(baseballGame3.getStrike()).isEqualTo(1);
         assertThat(baseballGame3.getBall()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("스트라이크와 볼의 개수가 각각 0일때 낫싱으로 판정되어야 한다.")
+    void 낫싱_판정() {
+        BaseballGame baseballGame = new BaseballGame("123", "456");
+
+        assertThat(baseballGame.getStrike()).isEqualTo(0);
+        assertThat(baseballGame.getStrike()).isEqualTo(0);
+        assertThat(baseballGame.getIsNothing()).isEqualTo(true);
+    }
 }
