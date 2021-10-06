@@ -19,7 +19,7 @@ public class UserInputValidator {
         return isValid;
     }
 
-    public boolean setIsValid() {
+    private boolean setIsValid() {
         if (!isValidLength()) {
             return false;
         }
