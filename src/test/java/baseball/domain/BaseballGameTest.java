@@ -1,0 +1,26 @@
+package baseball.domain;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+
+class BaseballGameTest {
+
+    @Test
+    @DisplayName("스트라이크와 볼의 개수가 정상적으로 확인되어야한다.")
+    void 스트라이크_및_볼_판정() {
+        BaseballGame baseballGame1 = new BaseballGame("645", "456");
+        BaseballGame baseballGame2 = new BaseballGame("457", "456");
+        BaseballGame baseballGame3 = new BaseballGame("546", "456");
+
+        assertThat(baseballGame1.getStrike()).isEqualTo(0);
+        assertThat(baseballGame1.getBall()).isEqualTo(3);
+
+        assertThat(baseballGame2.getStrike()).isEqualTo(2);
+        assertThat(baseballGame2.getBall()).isEqualTo(0);
+
+        assertThat(baseballGame3.getStrike()).isEqualTo(1);
+        assertThat(baseballGame3.getBall()).isEqualTo(2);
+    }
+}
